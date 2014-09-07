@@ -3,7 +3,8 @@ class CreateFoods < ActiveRecord::Migration
     create_table :foods do |t|
       t.string :name, null: false
       t.integer :points, null: false, default: 0
-      
+      t.integer :barcode
+
       # ext
       t.string :description
       t.integer :serving_size_numerator
@@ -18,6 +19,7 @@ class CreateFoods < ActiveRecord::Migration
       t.string :nutrition_unit, default: "grams"
 
       #server side
+      t.boolean :is_enabled, null: false, default: false
       t.string :remote_ip
       t.timestamps
     end

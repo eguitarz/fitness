@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140907042731) do
   create_table "foods", force: true do |t|
     t.string   "name",                                          null: false
     t.integer  "points",                   default: 0,          null: false
+    t.integer  "barcode"
     t.string   "description"
     t.integer  "serving_size_numerator"
     t.integer  "serving_size_denominator"
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20140907042731) do
     t.float    "nutrition_fiber",          default: 0.0
     t.float    "nutrition_protein",        default: 0.0
     t.string   "nutrition_unit",           default: "grams"
+    t.boolean  "is_enabled",               default: false,      null: false
     t.string   "remote_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
