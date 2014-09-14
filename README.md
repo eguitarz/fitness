@@ -1,2 +1,2 @@
-nutrition-database
+Nutrition Database
 ==================
