@@ -5,56 +5,36 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-foods = Food.create([
-  {
-    name: "Apple",
-    points: 7,
-    barcode: 119123434344,
-    description: "Just an edible apple.",
-    serving_size_numerator: 5,
-    serving_size_denominator: 4,
-    serving_size_unit: "servings",
-    is_fruit_or_vegetable: true,
-    is_using_nutrition_info: true,
-    nutrition_fat: 2.5,
-    nutrition_carbs: 13.1,
-    nutrition_fiber: 0.5,
-    nutrition_protein: 0,
-    nutrition_unit: "grams",
-    is_enabled: true
-  },
-  {
-    name: "Banana",
-    points: 3,
-    barcode: 119123434345,
-    description: "Just an edible banana.",
-    serving_size_numerator: 1,
-    serving_size_denominator: 4,
-    serving_size_unit: "servings",
-    is_fruit_or_vegetable: true,
-    is_using_nutrition_info: true,
-    nutrition_fat: 3.5,
-    nutrition_carbs: 0,
-    nutrition_fiber: 0,
-    nutrition_protein: 0,
-    nutrition_unit: "grams",
-    is_enabled: true
-  },
-  {
-    name: "Cat",
-    points: 24,
-    barcode: 219123434345,
-    description: "Just an edible cat.",
-    serving_size_numerator: 10,
-    serving_size_denominator: 1,
-    serving_size_unit: "oz",
-    is_fruit_or_vegetable: false,
-    is_using_nutrition_info: true,
-    nutrition_fat: 203.5,
-    nutrition_carbs: 0,
-    nutrition_fiber: 0,
-    nutrition_protein: 100,
-    nutrition_unit: "grams",
-    is_enabled: false
-  }
-])
+
+100.times.each do
+  Food.create({
+    name: Faker::Lorem.word,
+    description: Faker::Lorem.paragraph,
+    category: Faker::Number.number(1),
+    food_group: Faker::Number.number(1),
+    barcode: Faker::Number.number(12),
+    brand: Faker::Company.name,
+    calories: Faker::Number.number(rand(3) + 1),
+    total_fat: Faker::Number.number(rand(2) + 1),
+    saturated_fat: Faker::Number.number(rand(2) + 1),
+    trans_fat: Faker::Number.number(rand(2) + 1),
+    polyunsaturated_fat: Faker::Number.number(rand(2) + 1),
+    omega_6: Faker::Number.number(rand(2) + 1),
+    omega_3: Faker::Number.number(rand(2) + 1),
+    monounsaturated_fat: Faker::Number.number(rand(2) + 1),
+    cholesteral: Faker::Number.number(rand(2) + 1),
+    sodium: Faker::Number.number(rand(2) + 1),
+    potassium: Faker::Number.number(rand(2) + 1),
+    total_carbohydrates: Faker::Number.number(rand(2) + 1),
+    dietary_fiber: Faker::Number.number(rand(2) + 1),
+    sugars: Faker::Number.number(rand(2) + 1),
+    vitamin_a: Faker::Number.number(rand(2) + 1),
+    vitamin_b: Faker::Number.number(rand(2) + 1),
+    calcium: Faker::Number.number(rand(2) + 1),
+    iron: Faker::Number.number(rand(2) + 1),
+    serving_size: Faker::Number.number(rand(1) + 1),
+    serving_size_type: 1,
+    is_approved: true,
+    location: Faker::Address.country
+  })
+end

@@ -2,25 +2,35 @@ class CreateFoods < ActiveRecord::Migration
   def change
     create_table :foods do |t|
       t.string :name, null: false
-      t.integer :points, null: false, default: 0
-      t.integer :barcode
-
-      # ext
-      t.string :description
-      t.integer :serving_size_numerator
-      t.integer :serving_size_denominator
-      t.string :serving_size_unit, default: "servings"
-      t.boolean :is_fruit_or_vegetable, default: false
-      t.boolean :is_using_nutrition_info, default: false
-      t.float :nutrition_fat, default: 0
-      t.float :nutrition_carbs, default: 0
-      t.float :nutrition_fiber, default: 0
-      t.float :nutrition_protein, default: 0
-      t.string :nutrition_unit, default: "grams"
+      t.text :description
+      t.integer :category
+      t.integer :food_group
+      t.string :barcode
+      t.string :brand
+      t.float :calories
+      t.float :total_fat
+      t.float :saturated_fat
+      t.float :trans_fat
+      t.float :polyunsaturated_fat
+      t.float :omega_6
+      t.float :omega_3
+      t.float :monounsaturated_fat
+      t.float :cholesteral
+      t.float :sodium
+      t.float :potassium
+      t.float :total_carbohydrates
+      t.float :dietary_fiber
+      t.float :sugars
+      t.float :vitamin_a
+      t.float :vitamin_b
+      t.float :calcium
+      t.float :iron
+      t.float :serving_size
+      t.integer :serving_size_type
 
       #server side
-      t.boolean :is_enabled, null: false, default: false
-      t.string :remote_ip
+      t.boolean :is_approved, default: false
+      t.string :location
       t.timestamps
     end
   end

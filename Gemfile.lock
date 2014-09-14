@@ -33,6 +33,13 @@ GIT
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
 
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 7d42d920d0a7c5a33535e8f4796ae1b7833802ac
+  specs:
+    faker (1.4.3)
+      i18n (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -262,6 +269,7 @@ DEPENDENCIES
   bundler
   coffee-rails (~> 4.0.0)
   devise!
+  faker!
   google-analytics-rails
   jbuilder (~> 2.0)
   jquery-rails
