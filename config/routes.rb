@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-  get 'foods/index'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'foods#index'
-  resources :foods
+  resources :foods, only: [:create]
+  get 'foods/search/:query', to: 'foods#search'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
