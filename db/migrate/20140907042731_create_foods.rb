@@ -27,10 +27,10 @@ class CreateFoods < ActiveRecord::Migration
       t.float :iron
       t.float :serving_size
       t.integer :serving_size_type
+      t.string :location
 
       #server side
       t.boolean :is_approved, default: false
-      t.string :location
       t.timestamps
     end
   end
