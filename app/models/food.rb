@@ -11,7 +11,7 @@ class Food < ActiveRecord::Base
 
   def self.search(query=nil, range=nil)
     range_start, range_end = parse_range range
-    
+    foods = nil
 
     if query.present?
       search_length = query.split.length
@@ -21,20 +21,24 @@ class Food < ActiveRecord::Base
       }
       keywords = query.split.map{|keyword| "%#{keyword}%"}
       foods = Food.approved.where( [sqls.join(' OR ')] + keywords*2 )
-      { total_hits: foods.size, data: foods[range_start..range_end] }
     else
-      Food.all
+      foods = Food.approved
     end
+
+    { total_hits: foods.size, data: foods[range_start..range_end] }
   end
 
   def self.barcode(barcode, range=nil)
     range_start, range_end = parse_range(range)
+    foods = nil
+
     begin
       foods = Food.approved.where(barcode: barcode)
-      { total_hits: foods.size, data: foods[range_start..range_end] }
     rescue
-      []
+      foods = []
     end
+
+    { total_hits: foods.size, data: foods[range_start..range_end] }
   end
 
   private
