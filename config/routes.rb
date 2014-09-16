@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   resources :foods, only: [:create]
-  get 'foods/search/:query', to: 'foods#search'
+  get 'foods/search/(:query)', to: 'foods#search'
   get 'foods/barcode/:barcode', to: 'foods#barcode'
 
   # Example of regular route:
