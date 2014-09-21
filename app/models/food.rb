@@ -44,7 +44,7 @@ class Food < ActiveRecord::Base
   private
   def self.parse_range(range)
     begin
-      range_start, range_end = range.split(',')
+      range_start, range_end = range.split(':')
       range_start = range_start.to_i
       range_end = range_end.to_i
     rescue
