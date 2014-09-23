@@ -19,8 +19,10 @@ class Food < ActiveRecord::Base
       ['name', 'description'].each { |col| 
         search_length.times.each { sqls << "#{col} LIKE ?" }
       }
-      keywords = query.split.map{|keyword| "%#{keyword}%"}
-      foods = Food.approved.where( [sqls.join(' OR ')] + keywords*2 )
+      keywords = query.split
+      like_keywords = keywords.map{|keyword| "%#{keyword}%"}
+      foods = Food.approved.where( [sqls.join(' OR ')] + like_keywords*2 )
+      foods = filter_no_alphabet_before_keyowrds(foods, keywords)
     else
       foods = Food.approved
     end
@@ -52,5 +54,14 @@ class Food < ActiveRecord::Base
       range_end = 20
     end
     [range_start, range_end]
+  end
+
+  def self.filter_no_alphabet_before_keyowrds(foods, keywords)
+    result = []
+    pattern = keywords.map{|k| "(#{k})"}.join('|')
+    result = foods.select do |food|
+      (/^([A-Za-z\d]*\s+)?#{pattern}/i =~ food.name || /^([A-Za-z\d]*\s+)?#{pattern}/i =~ food.description) != nil
+    end
+    result
   end
 end
