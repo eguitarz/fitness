@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019034914) do
+ActiveRecord::Schema.define(version: 20140907042731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20141019034914) do
     t.string   "barcode"
     t.string   "brand"
     t.float    "calories"
+    t.float    "protein"
     t.float    "total_fat"
     t.float    "saturated_fat"
     t.float    "trans_fat"
@@ -76,11 +77,10 @@ ActiveRecord::Schema.define(version: 20141019034914) do
     t.float    "iron"
     t.float    "serving_size"
     t.integer  "serving_size_type"
-    t.boolean  "is_approved",         default: false
     t.string   "location"
+    t.boolean  "is_approved",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "protein"
   end
 
 end

@@ -8,6 +8,7 @@ class CreateFoods < ActiveRecord::Migration
       t.string :barcode
       t.string :brand
       t.float :calories
+      t.float :protein
       t.float :total_fat
       t.float :saturated_fat
       t.float :trans_fat
