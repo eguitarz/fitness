@@ -6,6 +6,7 @@ class CreateFoods < ActiveRecord::Migration
       t.integer :category
       t.integer :food_group
       t.string :barcode
+      t.string :barcode_type
       t.string :brand
       t.float :calories
       t.float :protein

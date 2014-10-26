@@ -13,7 +13,7 @@ ActiveAdmin.register Food do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-  permit_params :name, :description, :category, :food_group, :barcode, :brand, :calories, :total_fat,
+  permit_params :name, :description, :category, :food_group, :barcode, :barcode_type, :brand, :calories, :total_fat,
                 :saturated_fat, :trans_fat, :polyunsaturated_fat, :omega_6, :omega_3, :protein,
                 :monounsaturated_fat, :cholesteral, :sodium, :potassium, :total_carbohydrates,
                 :dietary_fiber, :sugars, :vitamin_a, :vitamin_b, :calcium, :iron, :serving_size,
