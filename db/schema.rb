@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20140907042731) do
     t.float    "cholesteral"
     t.float    "sodium"
     t.float    "potassium"
+    t.float    "caffeine"
     t.float    "total_carbohydrates"
     t.float    "dietary_fiber"
     t.float    "sugars"
@@ -79,6 +80,8 @@ ActiveRecord::Schema.define(version: 20140907042731) do
     t.float    "serving_size"
     t.integer  "serving_size_type"
     t.string   "location"
+    t.string   "user_ip"
+    t.string   "user_email"
     t.boolean  "is_approved",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"

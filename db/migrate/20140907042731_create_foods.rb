@@ -20,6 +20,7 @@ class CreateFoods < ActiveRecord::Migration
       t.float :cholesteral
       t.float :sodium
       t.float :potassium
+      t.float :caffeine
       t.float :total_carbohydrates
       t.float :dietary_fiber
       t.float :sugars
@@ -30,6 +31,8 @@ class CreateFoods < ActiveRecord::Migration
       t.float :serving_size
       t.integer :serving_size_type
       t.string :location
+      t.string :user_ip
+      t.string :user_email
 
       #server side
       t.boolean :is_approved, default: false

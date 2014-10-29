@@ -6,7 +6,7 @@ class FoodsController < ApplicationController
       :name, :description, :category, :food_group, :barcode, :barcode_type, :brand, :calories, :total_fat, :saturated_fat,
       :trans_fat, :polyunsaturated_fat, :omega_6, :omega_3, :protein, :monounsaturated_fat, :cholesteral,
       :sodium, :potassium, :total_carbohydrates, :dietary_fiber, :sugars, :vitamin_a, :vitamin_b,
-      :calcium, :iron, :serving_size, :serving_size_type, :location
+      :calcium, :iron, :caffeine, :serving_size, :serving_size_type, :location, :user_ip, :user_email
     )
 
     if food.save
