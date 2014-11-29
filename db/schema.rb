@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907042731) do
+ActiveRecord::Schema.define(version: 20141129020602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,45 @@ ActiveRecord::Schema.define(version: 20140907042731) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "analyzed_foods", force: true do |t|
+    t.string   "name",                                null: false
+    t.text     "description"
+    t.integer  "category"
+    t.integer  "food_group"
+    t.string   "barcode"
+    t.string   "barcode_type"
+    t.string   "brand"
+    t.float    "calories"
+    t.float    "protein"
+    t.float    "total_fat"
+    t.float    "saturated_fat"
+    t.float    "trans_fat"
+    t.float    "polyunsaturated_fat"
+    t.float    "omega_6"
+    t.float    "omega_3"
+    t.float    "monounsaturated_fat"
+    t.float    "cholesteral"
+    t.float    "sodium"
+    t.float    "potassium"
+    t.float    "caffeine"
+    t.float    "total_carbohydrates"
+    t.float    "dietary_fiber"
+    t.float    "sugars"
+    t.float    "vitamin_a"
+    t.float    "vitamin_b"
+    t.float    "calcium"
+    t.float    "iron"
+    t.float    "serving_size"
+    t.integer  "serving_size_type"
+    t.string   "location"
+    t.string   "user_ip"
+    t.string   "user_email"
+    t.boolean  "is_edited",           default: false
+    t.boolean  "is_mergeable",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "foods", force: true do |t|
     t.string   "name",                                null: false
     t.text     "description"
@@ -82,7 +121,17 @@ ActiveRecord::Schema.define(version: 20140907042731) do
     t.string   "location"
     t.string   "user_ip"
     t.string   "user_email"
-    t.boolean  "is_approved",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_edited"
+    t.boolean  "is_mergeable",        default: false
+  end
+
+  create_table "logs", force: true do |t|
+    t.integer  "start_id"
+    t.integer  "end_id"
+    t.datetime "started_at"
+    t.datetime "ended_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

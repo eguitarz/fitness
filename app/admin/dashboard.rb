@@ -20,7 +20,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Food summary" do
           para "There are #{Food.count} foods created"
-          para "There are #{Food.approved_count} foods enabled"
+          para "There are #{AnalyzedFood.count} foods analyzed"
         end
       end
     end

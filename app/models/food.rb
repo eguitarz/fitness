@@ -1,7 +1,6 @@
 class Food < ActiveRecord::Base
-  scope :approved, -> { where(is_approved: true) }
+  scope :edited, -> { where(is_edited: true) }
   scope :recent, ->(num) { order('created_at DESC').limit(num) }
-  scope :approved_count, -> { where(is_approved: true).count }
 
   validates :name, presence: true, length: { minimum: 2, maximum: 100 }
   validates :description, length: { maximum: 3000 }
@@ -21,10 +20,10 @@ class Food < ActiveRecord::Base
       }
       keywords = query.split
       like_keywords = keywords.map{|keyword| "%#{keyword}%"}
-      foods = Food.approved.where( [sqls.join(' OR ')] + like_keywords*2 )
+      foods = Food.where( [sqls.join(' OR ')] + like_keywords*2 )
       foods = filter_no_alphabet_before_keyowrds(foods, keywords)
     else
-      foods = Food.approved
+      foods = Food.all
     end
 
     { total_hits: foods.size, data: foods[range_start..range_end] }
@@ -35,7 +34,7 @@ class Food < ActiveRecord::Base
     foods = nil
 
     begin
-      foods = Food.approved.where(barcode: barcode)
+      foods = Food.where(barcode: barcode)
     rescue
       foods = []
     end
@@ -43,7 +42,40 @@ class Food < ActiveRecord::Base
     { total_hits: foods.size, data: foods[range_start..range_end] }
   end
 
-  private
+  def serving_unit
+    return "#{serving_size} #{serving_unit_string(serving_size_type)}"
+  end
+
+  def filled_columns
+    attributes.select{|k,v| v.present? }.count
+  end
+
+  protected
+  def serving_unit_string(serving_size_type)
+    case serving_size_type
+    when 1
+      'servings'
+    when 2
+      'grams'
+    when 3 
+      'ml'
+    when 4 
+      'cups'
+    when 5 
+      'tbsp'
+    when 6 
+      'tsp'
+    when 7 
+      'oz'
+    when 8 
+      'fl oz'
+    when -1
+      'unknown'
+    else
+      'undefined'
+    end
+  end
+
   def self.parse_range(range)
     begin
       range_start, range_end = range.split(':')

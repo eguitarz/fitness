@@ -6,13 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-100.times.each do
+5.times.each do
   Food.create({
     name: Faker::Lorem.word,
     description: Faker::Lorem.paragraph,
     category: Faker::Number.number(1),
     food_group: Faker::Number.number(1),
-    barcode: Faker::Number.number(12),
+    # barcode: Faker::Number.number(12),
+    barcode: 123456789222,
     brand: Faker::Company.name,
     calories: Faker::Number.number(rand(3) + 1),
     total_fat: Faker::Number.number(rand(2) + 1),
@@ -34,7 +35,8 @@
     iron: Faker::Number.number(rand(2) + 1),
     serving_size: Faker::Number.number(rand(1) + 1),
     serving_size_type: 1,
-    is_approved: true,
-    location: Faker::Address.country
+    is_mergeable: false,
+    location: Faker::Address.country,
+    user_ip: '10.10.10.4'
   })
 end
