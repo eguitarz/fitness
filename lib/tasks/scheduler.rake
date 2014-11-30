@@ -10,7 +10,6 @@ namespace :foods do
     ip_frequencies = build_frequency_map(daily_foods, 'user_ip')
     foods_to_remove = remove_duplicate_ip_of_same_barcode(daily_foods, ip_frequencies)
     daily_foods = daily_foods - foods_to_remove
-    daily_foods = daily_foods.sort_by {|f| f.created_at}.reverse
 
     mergeable_foods = Food.where(is_mergeable: true)
     foods = daily_foods + mergeable_foods
@@ -27,7 +26,7 @@ namespace :foods do
 
     push_to_analyzed_table( unique_foods + pickable_foods + merged_foods )
 
-    end_id = daily_foods.present? ? daily_foods.last.id : start_id
+    end_id = daily_foods.present? ? daily_foods.max_by(&:id) : start_id
     sign_off(start_id, end_id, started_at) if start_id && end_id && started_at
     puts "Finished analyzing foods"
   end
