@@ -10,6 +10,7 @@ namespace :foods do
     ip_frequencies = build_frequency_map(daily_foods, 'user_ip')
     foods_to_remove = remove_duplicate_ip_of_same_barcode(daily_foods, ip_frequencies)
     daily_foods = daily_foods - foods_to_remove
+    daily_foods = daily_foods.sort_by {|f| f.created_at}.reverse
 
     mergeable_foods = Food.where(is_mergeable: true)
     foods = daily_foods + mergeable_foods
